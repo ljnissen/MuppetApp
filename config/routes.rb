@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'check/action'
+
   resources :gonzos
 
   root :to => "gonzos#index"
