@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-  get 'check/action'
 
+  match ':controller(/:action(/:id))', :via => [:get, :post]
   resources :gonzos
+  #resources :quizzes
+  resources :answers
 
   root :to => "gonzos#index"
 

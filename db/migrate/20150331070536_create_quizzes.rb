@@ -1,8 +1,8 @@
 class CreateQuizzes < ActiveRecord::Migration
   def change
     create_table :quizzes do |t|
-      t.text :question
-      t.integer :score
+
+      t.text "First_question", :limit => 400
 
       t.timestamps null: false
     end

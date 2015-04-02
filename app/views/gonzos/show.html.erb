@@ -13,6 +13,12 @@
 </div>
 
 <div class="form-group">
+  <%= link_to "Select_A", :action => 'check', :id => @gonzo.id, :guess => "a" %> (<%= gonzo.answer %>)<br />
+  <%= link_to "Select_B", :action => 'check', :id => @gonzo.id, :guess => "b" %> (<%= gonzo.answer %>)<br />
+  <%= link_to "Select_C", :action => 'check', :id => @gonzo.id, :guess => "c" %> (<%= gonzo.answer %>)<br />
+  <%= link_to "Select_D", :action => 'check', :id => @gonzo.id, :guess => "d" %> (<%= gonzo.answer %>)<br />
+  <%= link_to "Select_E", :action => 'check', :id => @gonzo.id, :guess => "e" %> (<%= gonzo.answer %>)<br />
+  <%= link_to "Select_F", :action => 'check', :id => @gonzo.id, :guess => "f" %> (<%= gonzo.answer %>)<br />
   <%= link_to t('.back', :default => t("helpers.links.back")),
               gonzos_path, :class => 'btn btn-default'  %>
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
