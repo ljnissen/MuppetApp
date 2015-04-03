@@ -22,8 +22,10 @@ class GonzosController < ApplicationController
       format.json { render :show, status: :created, location: @gonzo }
 
     else
+      
       format.html { redirect_to @gonzo, notice: 'Sorry, your answer was wrong.' }
       format.json { render :show, status: :created, location: @gonzo }
+    
     end
   end
 

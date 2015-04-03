@@ -1,5 +1,5 @@
 class Quiz < ActiveRecord::Base
-	has_many :answers
+	
 
 	scope :visible, lambda {where(:visible => true)}
 	scope :invisible, lambda {where(:visible => false)}
