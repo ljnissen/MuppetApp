@@ -1,3 +1,4 @@
+
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Surveys</h1>
@@ -5,8 +6,7 @@
 <table>
   <thead>
     <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
+      <th>Name: </th>
     </tr>
   </thead>
 
@@ -14,9 +14,8 @@
     <% @surveys.each do |survey| %>
       <tr>
         <td><%= survey.name %></td>
-        <td><%= link_to 'Show', survey %></td>
-        <td><%= link_to 'Edit', edit_survey_path(survey) %></td>
-        <td><%= link_to 'Destroy', survey, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to('Show', {:action => 'show', :id => survey.id}, :class => 'action_show') %></td>
+        <td><%= link_to('Edit', {:action => 'edit', :id => survey.id}, :class => 'action_edit')  %></td>
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +23,4 @@
 
 <br>
 
-<%= link_to 'New Survey', new_survey_path %>
+<%= link_to('New Survey', {:action => 'new'}, :class => 'action_new') %>

@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
 
   resources :surveys
-
-  #match ':controller(/:action(/:id))', :via => [:get, :post]
+  resources :questions
+  match ":controller(/:action(/:id))", :via => [:get, :post]
   #resources :gonzos
   #resources :quizzes
   #resources :answers
 
-  root :to => "surveys#index"
+  root :to => "questions#index"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

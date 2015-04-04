@@ -10,6 +10,8 @@ class SurveysController < ApplicationController
   # GET /surveys/1
   # GET /surveys/1.json
   def show
+    @surveys = Survey.all
+    @survey = Survey.find(params[:id])
   end
 
   # GET /surveys/new
@@ -20,46 +22,48 @@ class SurveysController < ApplicationController
 
   # GET /surveys/1/edit
   def edit
+    @survey = Survey.find(params[:id])
   end
 
   # POST /surveys
   # POST /surveys.json
   def create
     @survey = Survey.new(survey_params)
-
-    respond_to do |format|
       if @survey.save
-        format.html { redirect_to @survey, notice: 'Survey was successfully created.' }
-        format.json { render :show, status: :created, location: @survey }
+        flash[:notice] = 'Survey was successfully created.' 
+        redirect_to(:action => 'index')
       else
-        format.html { render :new }
-        format.json { render json: @survey.errors, status: :unprocessable_entity }
+        render('new') 
       end
     end
   end
 
   # PATCH/PUT /surveys/1
   # PATCH/PUT /surveys/1.json
-  def update
-    respond_to do |format|
-      if @survey.update(survey_params)
-        format.html { redirect_to @survey, notice: 'Survey was successfully updated.' }
-        format.json { render :show, status: :ok, location: @survey }
-      else
-        format.html { render :edit }
-        format.json { render json: @survey.errors, status: :unprocessable_entity }
-      end
-    end
+def update
+  #Find an existing object using form parameters
+  @survey = Survey.find(params[:id])
+  #Update the object
+  if @survey.update_attributes(survey_params)
+    flash[:notice] = "Page updated successfully."
+    #If update succeeds, redirect to 'show' action.
+    redirect_to(:action => 'show', :id => @survey.id)
+  else
+    #Else redisplay the 'edit' form.
+    render('edit')
+  end
+end 
+
+  def delete
+    @survey = Survey.find(params[:id])
   end
 
   # DELETE /surveys/1
   # DELETE /surveys/1.json
   def destroy
-    @survey.destroy
-    respond_to do |format|
-      format.html { redirect_to surveys_url, notice: 'Survey was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    @survey = Survey.find(params[:id]).destroy
+    flash[:notice] = "Survey destroyed successfully."
+    redirect_to(:action => 'index')
   end
 
   private
@@ -72,4 +76,4 @@ class SurveysController < ApplicationController
     def survey_params
       params.require(:survey).permit(:name)
     end
-end
+

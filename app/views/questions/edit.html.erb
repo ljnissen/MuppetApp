@@ -1,0 +1,24 @@
+<td><%= link_to('<< Back to list', {:action => 'index'}, :class => 'action_index') %></td>
+
+<h2>Edit question:</h2>
+
+<div class = "question_edit">
+
+  <%= form_for(:question, :url => {:action => 'update', :id => @question.id }) do |f| %>
+
+      <table summary="Question_form_fields">
+        <tr>
+          <th>Survey ID</th>
+          <td><%= f.text_field(:survey_id)%></td>
+        </tr>
+        <tr>
+          <th>Content</th>
+          <td><%= f.text_area(:content)%></td>
+        </tr>
+      </table>
+    <div class="form_buttons">
+      <%= submit_tag("Update survey") %>
+    </div>
+  <% end %>
+</div>
+

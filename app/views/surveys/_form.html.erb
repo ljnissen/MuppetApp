@@ -1,28 +1,18 @@
-<%= form_for(@survey) do |f| %>
-  <% if @survey.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@survey.errors.count, "error") %> prohibited this survey from being saved:</h2>
+<td><%= link_to('<< Back to list', {:action => 'index'}, :class => 'action_index') %></td>
 
-      <ul>
-      <% @survey.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<div class = "survey_new">
+  <h2>Create survey</h2>
+
+  <%= form_for(:survey, :url => {:action => 'create'}) do |f| %>
+
+      <table summary="Survey_form_fields">
+        <tr>
+          <th>Name</th>
+          <td><%= f.text_field(:name)%></td>
+        </tr>
+      </table>
+    <div class="form_buttons">
+      <%= submit_tag("Create survey") %>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-    <% f.fields_for :questions do |builder| %>
-      <div class="builder">
-        <%= builder.label :content, "Question" %><br />
-        <%= builder.text_area :content, :rows => 5 %><br />
-      </div> 
-    <% end %>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>
