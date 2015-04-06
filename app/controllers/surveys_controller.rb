@@ -28,31 +28,30 @@ class SurveysController < ApplicationController
   # POST /surveys
   # POST /surveys.json
   def create
-    @survey = Survey.new(survey_params)
+      @survey = Survey.new(survey_params)
       if @survey.save
         flash[:notice] = 'Survey was successfully created.' 
         redirect_to(:action => 'index')
       else
         render('new') 
       end
-    end
   end
 
-  # PATCH/PUT /surveys/1
-  # PATCH/PUT /surveys/1.json
-def update
-  #Find an existing object using form parameters
-  @survey = Survey.find(params[:id])
-  #Update the object
-  if @survey.update_attributes(survey_params)
-    flash[:notice] = "Page updated successfully."
-    #If update succeeds, redirect to 'show' action.
-    redirect_to(:action => 'show', :id => @survey.id)
-  else
-    #Else redisplay the 'edit' form.
-    render('edit')
-  end
-end 
+    # PATCH/PUT /surveys/1
+    # PATCH/PUT /surveys/1.json
+  def update
+    #Find an existing object using form parameters
+    @survey = Survey.find(params[:id])
+    #Update the object
+    if @survey.update_attributes(survey_params)
+      flash[:notice] = "Page updated successfully."
+      #If update succeeds, redirect to 'show' action.
+      redirect_to(:action => 'show', :id => @survey.id)
+    else
+      #Else redisplay the 'edit' form.
+      render('edit')
+    end
+  end 
 
   def delete
     @survey = Survey.find(params[:id])
@@ -76,4 +75,4 @@ end
     def survey_params
       params.require(:survey).permit(:name)
     end
-
+end

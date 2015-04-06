@@ -1,29 +1,36 @@
 
 <p id="notice"><%= notice %></p>
 
+<%= link_to('<< Back to Surveys', {:controller => 'survey', :action => 'index'}, :class => 'back-link') %>
+
 <h1>Listing Questions</h1>
 
 <table class = "listing" summary = "question_list"> 
 
     <tr class = "header">
-      <th>&nbsp</th>
-      <th>Survey ID:<br /><br /></th>
-      <th>&nbsp</th>
+      <th>&nbsp;</th>
       <th>Content:<br /><br /></th>
+      <th>&nbsp;</th>
+      <th>Survey ID:<br /><br /></th>
+      <th>&nbsp;</th>
       <th colspan="3"></th>
     </tr>
 
     <% @questions.each do |question| %>
       <tr>
+        <th>&nbsp;</th>
         <td><%= question.content %></td>
+        <th>&nbsp;</th>
         <td><%= question.survey_id %></td>
+        <th>&nbsp;</th>
         <td class="actions">
-          <td><%= link_to('Show', {:action => 'show', :id => question.id}, :class => 'action_show') %></td>
-          <td><%= link_to('Edit', {:action => 'edit', :id => question.id}, :class => 'action_edit')  %></td>
+          <td><%= link_to('Show', {:action => 'show', :id => question.id, :survey_id => @survey.id}, :class => 'action_show') %></td>
+          <td><%= link_to('Edit', {:action => 'edit', :id => question.id, :survey_id => @survey.id}, :class => 'action_edit')  %></td>
+          <td><%= link_to('Delete', {:action => 'destroy', :id => question.id, :survey_id => @survey.id}, :class => 'action_destroy')  %></td>
       </tr>
     <% end %>
 </table>
 
 <br />
 
-<%= link_to('New Question', {:action => 'new'}, :class => 'action_new') %>
+<%= link_to('New Question', {:action => 'new', :survey_id => @survey.id}, :class => 'action_new') %>

@@ -1,2 +1,15 @@
-<h1>Questions#delete</h1>
-<p>Find me in app/views/questions/delete.html.erb</p>
+<td><%= link_to('<< Back to list', {:action => 'index', :survey_id => @survey.id}, :class => 'action_index') %></td>
+
+<h2>Delete question</h2>
+
+<div class = "question_delete">
+
+  <%= form_for(:question, :url => {:action => 'destroy', :id => @question.id, :survey_id => @survey.id}) do |f| %>
+
+    <p>Are you sure you permanently want to delete the survey?</p>
+    
+    <div class="form_buttons">
+      <%= submit_tag("Delete question") %>
+    </div>
+  <% end %>
+</div>

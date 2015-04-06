@@ -1,7 +1,10 @@
 class QuestionsController < ApplicationController
+
+  before_action :find_survey
   
   def index
-    @questions = Question.all
+    # @questions = Question.where(:survey_id => @survey.id).all
+    @questions = @survey.questions.all
   end
 
   def show
@@ -9,38 +12,37 @@ class QuestionsController < ApplicationController
   end
 
   def new
-    @question = Question.new
-  end
-
-    # GET /surveys/1/edit
-  def edit
-    @question = Question.find(params[:id])
+    @question = Question.new({:survey_id => @survey.id})
   end
 
   # POST /surveys
   # POST /surveys.json
   def create
-    @question = Question.new(question_params)
+      @question = Question.new(question_params)
       if @question.save
-        redirect_to(:action => 'index')
         flash[:notice] = 'Question was successfully created.' 
+        redirect_to(:action => 'index', :survey_id => @survey.id)
       else
         render('new') 
       end
-    end
+  end
+
+  # GET /surveys/1/edit
+  def edit
+    @question = Question.find(params[:id])
   end
 
   # PATCH/PUT /surveys/1
   # PATCH/PUT /surveys/1.json
-def update
-  @question = Question.find(params[:id])
-  if @question.update_attributes(question_params)
-    flash[:notice] = "Question updated successfully."
-    redirect_to(:action => 'show', :id => @question.id)
-  else
-    render('edit')
-  end
-end 
+  def update
+    @question = Question.find(params[:id])
+    if @question.update_attributes(question_params)
+      flash[:notice] = "Question updated successfully."
+      redirect_to(:action => 'show', :id => @question.id, :survey_id => @survey.id)
+    else
+      render('edit')
+    end
+  end 
 
   def delete
     @question = Question.find(params[:id])
@@ -51,7 +53,7 @@ end
   def destroy
     @question = Question.find(params[:id]).destroy
     flash[:notice] = "Question destroyed successfully."
-    redirect_to(:action => 'index')
+    redirect_to(:action => 'index', :survey_id => @survey.id)
   end
 
   private
@@ -64,3 +66,12 @@ end
     def question_params
       params.require(:question).permit(:survey_id, :content)
     end
+
+    def find_survey
+      # If each action calling this method (find_survey) has :survey_id sent
+      if params[:survey_id]
+        # We will then go to the database and look for (and find) :survey_id and set that to @survey. 
+        @survey = Survey.find(params[:survey_id])
+      end
+    end
+end

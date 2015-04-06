@@ -1,0 +1,15 @@
+<td><%= link_to('<< Back to list', {:action => 'index'}, :class => 'action_index') %></td>
+
+<h2>Delete survey</h2>
+
+<div class = "survey_delete">
+
+  <%= form_for(:survey, :url => {:action => 'destroy', :id => @survey.id}) do |f| %>
+
+    <p>Are you sure you permanently want to delete the survey?</p>
+    
+    <div class="form_buttons">
+      <%= submit_tag("Delete survey") %>
+    </div>
+  <% end %>
+</div>
