@@ -1,10 +1,10 @@
 class QuestionsController < ApplicationController
-
+  before_action :set_question, only: [:show, :edit, :update, :destroy]
   before_action :find_survey
   
   def index
-    # @questions = Question.where(:survey_id => @survey.id).all
-    @questions = @survey.questions.all
+    # @questions = Question.where(:survey_id => @survey.id).sorted
+    @questions = @survey.questions.sorted
   end
 
   def show
@@ -68,7 +68,7 @@ class QuestionsController < ApplicationController
     end
 
     def find_survey
-      # If each action calling this method (find_survey) has :survey_id sent
+      # If in each action calling this method (find_survey) has :survey_id sent
       if params[:survey_id]
         # We will then go to the database and look for (and find) :survey_id and set that to @survey. 
         @survey = Survey.find(params[:survey_id])

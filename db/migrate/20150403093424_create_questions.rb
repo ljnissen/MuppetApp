@@ -10,4 +10,5 @@ class CreateQuestions < ActiveRecord::Migration
 
   def down
   	drop_table :questions
+  end
 end

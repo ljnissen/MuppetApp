@@ -1,4 +1,19 @@
-<td><%= link_to('<< Back to list', {:action => 'index'}, :class => 'action_index') %></td>
+<%= form_for(:survey, :url => {:action => 'create'}) do |f| %>
+  <%= f.error_messages %>
+    <p>
+      <%= f.label :name %><br />
+      <%= f.text_field :name %>
+    </p>
+  <%= f.fields_for :questions do |builder| %>
+    <p>
+      <%= builder.label :content, "Question" %><br />
+      <%= builder.text_area :content, :rows => 3 %>
+    </p>
+  <% end %>
+  <p><%= f.submit "Submit" %></p>
+<% end %>
+
+<!--<td><%= link_to('<< Back to list', {:action => 'index'}, :class => 'action_index') %></td>
 
 <div class = "survey_new">
 
@@ -15,3 +30,4 @@
     </div>
   <% end %>
 </div>
+-->

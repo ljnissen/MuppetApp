@@ -1,4 +1,4 @@
-<td><%= link_to('<< Back to list', {:action => 'index', :survey_id => @survey.id}, :class => 'action_index') %></td>
+<td><%= link_to('<< Back to list', {:action => 'index', :survey_id => @survey.id}, :class => 'back-link') %></td>
 
 <h2>Delete question</h2>
 
@@ -6,7 +6,7 @@
 
   <%= form_for(:question, :url => {:action => 'destroy', :id => @question.id, :survey_id => @survey.id}) do |f| %>
 
-    <p>Are you sure you permanently want to delete the survey?</p>
+    <p>Are you sure you permanently want to delete the question?</p>
     
     <div class="form_buttons">
       <%= submit_tag("Delete question") %>

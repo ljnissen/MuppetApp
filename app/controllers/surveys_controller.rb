@@ -1,5 +1,6 @@
 class SurveysController < ApplicationController
   before_action :set_survey, only: [:show, :edit, :update, :destroy]
+  # before_action :find_question
 
   # GET /surveys
   # GET /surveys.json
@@ -10,19 +11,14 @@ class SurveysController < ApplicationController
   # GET /surveys/1
   # GET /surveys/1.json
   def show
-    @surveys = Survey.all
+    #@surveys = Survey.where(:question_id => @question.id).all
     @survey = Survey.find(params[:id])
   end
 
   # GET /surveys/new
   def new
     @survey = Survey.new
-    3.times { @survey.questions.build }
-  end
-
-  # GET /surveys/1/edit
-  def edit
-    @survey = Survey.find(params[:id])
+    6.times { @survey.questions.build }
   end
 
   # POST /surveys
@@ -35,6 +31,11 @@ class SurveysController < ApplicationController
       else
         render('new') 
       end
+  end
+
+  # GET /surveys/1/edit
+  def edit
+    @survey = Survey.find(params[:id])
   end
 
     # PATCH/PUT /surveys/1
@@ -75,4 +76,10 @@ class SurveysController < ApplicationController
     def survey_params
       params.require(:survey).permit(:name)
     end
+
+    #def find_question
+    #  if params[:question_id]
+    #      @question = Question.find(params[:question_id])
+    #  end
+    #end
 end
