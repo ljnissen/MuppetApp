@@ -1,3 +1,3 @@
 class Answer < ActiveRecord::Base
-	belongs_to :gonzo
+	belongs_to :question
 end
