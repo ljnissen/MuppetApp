@@ -18,7 +18,10 @@ class SurveysController < ApplicationController
   # GET /surveys/new
   def new
     @survey = Survey.new
-    6.times { @survey.questions.build }
+    3.times do 
+      question = @survey.questions.build
+      4.times { question.answers.build }
+    end
   end
 
   # POST /surveys
@@ -74,7 +77,7 @@ class SurveysController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def survey_params
-      params.require(:survey).permit(:name, questions_attributes: [:survey_id, :content])
+      params.require(:survey).permit(:name, questions_attributes: [:survey_id, :id, :content, answers_attributes: [:question_id, :id, :content]])
     end
 
     #def find_question
