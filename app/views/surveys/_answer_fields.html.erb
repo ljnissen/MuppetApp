@@ -1,5 +1,5 @@
 <p class="fields">
 	<%= f.label :content, "Answer" %>
 	<%= f.text_field :content %>
-	<%= link_to_function "remove", f %>
+	<%= f.radio_button(:content, true) %>
 </p>
