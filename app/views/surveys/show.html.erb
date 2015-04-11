@@ -7,18 +7,19 @@
 			<th>Name: </th>
 				<td><%= h @survey.name %></td>
 		</tr>
-		<tr>
+				<tr>
 			<th>Question: </th>
 				<td><% for question in @survey.questions do %>
   							<li><%= h question.content %></li>
   							<ul>
-  								<%= for answer in question.answers do %>
+  								<% for answer in question.answers do %>
   									<li><%= h answer.content %></li>
   								<% end %>
   							</ul>
   					<% end %>
   				</td>
 		</tr>
+
 		<tr>
 			<th>Created_at: </th>
 				<td><%= @survey.created_at %></td>
@@ -27,6 +28,7 @@
       <tr>
     
         <td><%= link_to('Edit', {:action => 'edit', :id => @survey.id }, :class => 'action_edit')  %></td>
+        <td><%= link_to('Delete', {:action => 'destroy', :id => @survey.id }, :class => 'action_edit')  %></td>
       </tr>
 	</table>
 

@@ -80,9 +80,4 @@ class SurveysController < ApplicationController
       params.require(:survey).permit(:name, questions_attributes: [:survey_id, :id, :content, answers_attributes: [:question_id, :id, :content]])
     end
 
-    #def find_question
-    #  if params[:question_id]
-    #      @question = Question.find(params[:question_id])
-    #  end
-    #end
 end
