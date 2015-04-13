@@ -39,8 +39,6 @@ class SurveysController < ApplicationController
   # GET /surveys/1/edit
   def edit
     @survey = Survey.find(params[:id])
-
-    @survey.questions.build
   end
 
     # PATCH/PUT /surveys/1
@@ -81,5 +79,4 @@ class SurveysController < ApplicationController
     def survey_params
       params.require(:survey).permit(:name, questions_attributes: [:survey_id, :id, :content, answers_attributes: [:question_id, :id, :correct_answer, :content]])
     end
-
 end

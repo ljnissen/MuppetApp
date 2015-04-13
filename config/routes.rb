@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   #get ':surveys/:id' => 'survey#view'
   #resources :question
   
-  match ':controller(/:action(/:id))', :via => [:get, :post]
+  match ':controller(/:action(/:id))', :via => [:get, :post, :patch]
   #match ':controller(/:id(/:action))', :via => [:get, :post]
   #resources :gonzos
   #resources :quizzes

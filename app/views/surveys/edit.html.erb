@@ -17,9 +17,9 @@
                     <%= builder.text_area :content %>
             </li>
             <li> 
-                    <%= f.fields_for :answers do |builder| %>
-                          <%= builder.label :content, "Answer: " %>
-                          <%= builder.text_field :content %>
+                    <%= f.fields_for :answers do |fb| %>
+                          <%= fb.label :content, "Answer: " %>
+                          <%= fb.text_field :content %>
                     <% end %>
             </li>
                 <% end %>  
