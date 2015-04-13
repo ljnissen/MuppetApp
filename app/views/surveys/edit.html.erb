@@ -4,40 +4,31 @@
 
 <div class = "survey_edit">
 
-  <%= form_for(:survey, :url => {:action => 'update', :id => @survey.id, :survey_id => @survey.id }) do |f| %>
+  <%= form_for(@survey, :url => {:action => 'update', :id => @survey.id, :survey_id => @survey.id }) do |f| %>
 
-      <table summary="Survey_form_fields">
+      <p summary="Survey_form_fields">
         <tr>
-        <th>Survey: </th>
-          <td><%= f.text_field(:name)%></td>
-        
-          <th>Question: </th>  
-            <td><%= f.fields_for :questions do |fc| %>
-                <%= fc.text_area :content %>
-            <% end %></td>    
-          <th>Answer: </th>
-            <td><%= f.fields_for :answers do |fd| %>
-                <%= fd.text_field :content %>
-            <% end %></td>
-          <th>Answer: </th>
-            <td><%= f.fields_for :answers do |fe| %>
-                <%= fe.text_field :content %>
-            <% end %></td>
-          <th>Answer: </th>
-            <td><%= f.fields_for :answers do |ff| %>
-                <%= ff.text_field :content %>
-            <% end %></td>
-          <th>Answer: </th>
-            <td><%= f.fields_for :answers do |fg| %>
-                <%= fg.text_field :content %>
-            <% end %></td>          
+          <li><%= f.label :name, "Survey: " %>
+              <%= f.text_field :name %>
+          </li>
+          <ul>  
+            <li><%= f.fields_for :questions do |builder| %>
+                    <%= builder.label :content, "Question: " %>
+                    <%= builder.text_area :content %>
+            </li>
+            <li> 
+                    <%= f.fields_for :answers do |builder| %>
+                          <%= builder.label :content, "Answer: " %>
+                          <%= builder.text_field :content %>
+                    <% end %>
+            </li>
+                <% end %>  
+          </ul>
         </tr>
 
-      </table>
+      </p>
 
         <td><%= link_to('Delete', {:action => 'destroy', :id => @survey.id }, :class => 'action_edit')  %></td>
-      </tr>
-      </table>
     <div class="form_buttons">
       <%= submit_tag("Update survey") %>
     </div>
