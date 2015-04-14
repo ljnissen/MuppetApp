@@ -13,16 +13,18 @@
           </li>
           <ul>  
             <li><%= f.fields_for :questions do |builder| %>
-                    <%= builder.label :content, "Question: " %>
-                    <%= builder.text_area :content %>
+                   <%= builder.label :content, "Question: " %>
+                   <%= builder.text_area :content, :rows => 3 %>
+                
             </li>
             <li> 
                     <%= f.fields_for :answers do |fb| %>
                           <%= fb.label :content, "Answer: " %>
                           <%= fb.text_field :content %>
                     <% end %>
+                <% end %>
             </li>
-                <% end %>  
+                  
           </ul>
         </tr>
 
