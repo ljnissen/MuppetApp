@@ -47,7 +47,7 @@ class SurveysController < ApplicationController
     #Find an existing object using form parameters
     @survey = Survey.find(params[:id])
     #Update the object
-    if @survey.update_attributes(survey_params)
+    if @survey.update(survey_params)
       flash[:notice] = "Survey updated successfully."
       #If update succeeds, redirect to 'show' action.
       redirect_to(:action => 'show', :id => @survey.id)
@@ -77,6 +77,6 @@ class SurveysController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def survey_params
-      params.require(:survey).permit(:name, questions_attributes: [:survey_id, :id, :content, answers_attributes: [:question_id, :id, :correct_answer, :content]])
+      params.require(:survey).permit(:name, questions_attributes: [:survey_id, :id, :content, :answers_attributes => [:question_id, :id, :correct_answer, :content]])
     end
 end

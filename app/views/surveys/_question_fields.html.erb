@@ -2,6 +2,6 @@
   <%= f.label :content, "Question" %><br />
   <%= f.text_area :content, :rows => 3 %><br />
 </p>
-<%= f.fields_for :answers do |fff| %>
-  <%= render 'answer_fields', :f => fff %>
+<%= f.fields_for :answers do |builder| %>
+  <%= render 'answer_fields', :f => builder %>
 <% end %>
