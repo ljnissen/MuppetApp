@@ -1,6 +1,21 @@
-
-<p id="notice"><%= notice %></p>
-
+<%- model_class = Survey -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= @surveys.each do |survey| %>
+        <td><%= survey.id %></td>
+          <td><%= survey.name %></td>
+        <td><%=l survey.created_at, format: :long %></td>
+    <% end %>
 <h1>Listing Surveys</h1>
 
 <table>
@@ -14,8 +29,8 @@
     <% @surveys.each do |survey| %>
       <tr>
         <td><%= survey.name %></td>
-        <td><%= link_to('Show', {:action => 'show', :id => survey.id}, :class => 'action_show') %></td>
-        <td><%= link_to('Edit', {:action => 'edit', :id => survey.id}, :class => 'action_edit')  %></td>
+        <td><%= link_to('Show', {:action => 'show', :id => survey.id}, :class => 'action_show') %>|</td>
+        <td><%= link_to('Edit', {:action => 'edit', :id => survey.id}, :class => 'action_edit')  %>|</td>
         <td><%= link_to('Delete', {:action => 'delete', :id => survey.id}, :class => 'action_delete')  %></td>
       </tr>
     <% end %>
