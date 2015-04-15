@@ -1,4 +1,6 @@
-<%= form_for :survey do |f| %>
+<td><%= link_to('<< Back to list', {:action => 'index'}, :class => 'action_index') %></td>
+
+<%= form_for(@survey, :url => {:action => 'create', :survey_id => @survey.id}) do |f| %>
 
   <%= f.error_messages %>
     <p>
@@ -7,9 +9,10 @@
     </p>
   <%= f.fields_for :questions do |ff| %>
       <%= render 'question_fields', :f => ff %>
+  
+      <%= ff.fields_for :answers do |fff| %>
+          <%= render 'answer_fields', :f => fff %>
+      <% end %>
+      <p><%= f.submit "Submit" %></p>
   <% end %>
-  <%= f.fields_for :answers do |fff| %>
-      <%= render 'answer_fields', :f => fff %>
-  <% end %>
-  <p><%= f.submit "Submit" %></p>
 <% end %>
