@@ -2,10 +2,11 @@ Rails.application.routes.draw do
 
   root :to => "surveys#index"
   
-  #resources :surveys
+  resources :surveys
   #post ':surveys/:id', :to => "surveys/update", :via => :post
   #get ':surveys/:id' => 'survey#view'
-  #resources :question
+  resources :questions
+  resources :answers
   
   match ':controller(/:action(/:id))', :via => [:get, :post, :patch]
   #match ':controller(/:id(/:action))', :via => [:get, :post]
