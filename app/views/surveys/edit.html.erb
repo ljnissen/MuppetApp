@@ -1,35 +1,12 @@
-<td><%= link_to('<< Back to list', {:action => 'index'}, :class => 'action_index') %></td>
-
-<h2>Update survey</h2>
-
-<div class = "survey_edit">
-
-  <%= form_for(@survey, :url => {:action => 'update', :id => @survey.id, :survey_id => @survey.id }) do |f| %>
-
-      <p summary="Survey_form_fields">
-        <tr>
-          <li><%= f.label :name, "Survey: " %>
-              <%= f.text_field :name %>
-          </li>
-          <ul>  
-              <%= f.fields_for :questions do |ff| %>
-                  <%= render 'question_fields', :f => ff %>
-              
-                  <%= ff.fields_for :answers do |fff| %>
-                      <%= render 'answer_fields', :f => fff %>
-                  <% end %>
-              <% end %>        
-          </ul>
-        </tr>
-
-      </p>
-
-        <td><%= link_to('Delete', {:action => 'destroy', :id => @survey.id }, :class => 'action_edit')  %></td>
-    <div class="form_buttons">
-      <%= submit_tag("Update survey") %>
-    </div>
-  <% end %>
+<%- model_class = Survey -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize %></h1>
 </div>
+<%= render :partial => 'form' %>
+
+
+
+
 
 
 
