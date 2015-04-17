@@ -4,7 +4,7 @@ class QuestionsController < ApplicationController
   
   def index
     # @questions = Question.where(:survey_id => @survey.id).sorted
-    @questions = @survey.questions.answers.sorted
+    @questions = Question.all.sorted
   end
 
   def show

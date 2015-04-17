@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   #post ':surveys/:id', :to => "surveys/update", :via => :post
   #get ':surveys/:id' => 'survey#view'
   resources :questions
+  resources :quizzes
   resources :answers
   
   match ':controller(/:action(/:id))', :via => [:get, :post, :patch]

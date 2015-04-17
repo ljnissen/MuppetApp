@@ -5,33 +5,18 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:title) %></th>
-      <th><%= model_class.human_attribute_name(:body) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      <th><%= model_class.human_attribute_name(:survey) %></th>
+      <th><%= model_class.human_attribute_name(:question) %></th>
+      <th><%= model_class.human_attribute_name(:answers) %></th>
     </tr>
   </thead>
   <tbody>
-    <% @quizzes.each do |quiz| %>
+    <% question = @questions.first %>
       <tr>
-        <td><%= quiz.id %></td>
-          <td><%= quiz.title %></td>
-          <td><%= quiz.body %></td>
-        <td><%=l quiz.created_at, format: :long %></td>
-        <td>
-          <%= link_to quiz_path(quiz), :class => 'btn btn-xs', :title => "#{ t('.show', :default => t('helpers.links.show')) }" do %>
-            <%= glyph 'info-sign' %>
-          <%- end -%>
-          <%= link_to edit_quiz_path(quiz), :class => 'btn btn-xs', :title => "#{ t('.edit', :default => t('helpers.links.edit')) }" do %>
-            <%= glyph 'pencil' %>
-          <%- end -%>
-          <%= link_to quiz_path(quiz), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs', :title => "#{ t('.destroy', :default => t('helpers.links.destroy')) }" do %>
-            <%= glyph 'remove' %>
-          <%- end -%>
-        </td>
+          <td><%= question.name %></td>
+          <td><%= question.content %></td>
+        <td><%=l question.created_at, format: :long %></td>
       </tr>
-    <% end %>
   </tbody>
 </table>
 
