@@ -5,6 +5,7 @@ class QuestionsController < ApplicationController
   def index
     # @questions = Question.where(:survey_id => @survey.id).sorted
     @questions = Question.all.sorted
+    @surveys = Survey.all
   end
 
   def show

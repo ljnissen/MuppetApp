@@ -4,9 +4,7 @@
 
     <tr class = "header">
       <th>&nbsp;</th>
-      <th>Content:<br /><br /></th>
-      <th>&nbsp;</th>
-      <th>Survey ID:<br /><br /></th>
+      <th>Questions:<br /><br /></th>
       <th>&nbsp;</th>
       <th colspan="3"></th>
     </tr>
@@ -15,8 +13,6 @@
       <tr>
         <th>&nbsp;</th>
         <td><%= question.content %></td>
-        <th>&nbsp;</th>
-        <td><%= question.survey_id %></td>
         <th>&nbsp;</th>
         <td class="actions">
       </tr>
@@ -27,3 +23,8 @@
 
   <%= link_to t('.back', :default => t("helpers.links.back")),
               surveys_path, :class => 'btn btn-default'  %>
+
+
+<% @surveys.each do |survey| %>
+ <td><%= link_to('Show', {:action => 'show', :id => survey.id}, :class => 'action_show') %>|</td>
+<% end %>
