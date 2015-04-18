@@ -1,0 +1,21 @@
+<td><%= link_to('<< Back to list', {:action => 'index', :question_id => @question.id}, :class => 'action_index') %></td>
+
+<div class="question show">
+  <h2><strong>Show question:</strong></h2>
+	<table summary="Question detail view">
+		<tr>
+			<th>Survey ID: </th>
+				<td><%= @question.survey_id %></td>
+		</tr>
+
+		<tr>
+			<th>Content: </th>
+				<td><%= @question.content %></td>
+		</tr>
+
+		<tr>
+			<th>Choices: </th>
+				<td><%= @question.answers %></td>
+		</tr>
+	</table>
+</div>

@@ -10,6 +10,7 @@ class QuestionsController < ApplicationController
 
   def show
     @question = Question.find(params[:id])
+    @survey = Survey.find(params[:id])
   end
 
   def new
