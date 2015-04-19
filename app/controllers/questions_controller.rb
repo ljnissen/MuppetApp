@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-  before_action :set_question, only: [:show, :edit, :update, :destroy]
+  #before_action :set_question, only: [:show, :edit, :update, :destroy]
   before_action :find_survey
   
   def index
@@ -11,6 +11,8 @@ class QuestionsController < ApplicationController
   def show
     @question = Question.find(params[:id])
     @survey = Survey.find(params[:id])
+    @questions = Question.all.sorted
+    @surveys = Survey.all
   end
 
   def new
