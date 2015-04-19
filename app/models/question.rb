@@ -6,7 +6,13 @@ class Question < ActiveRecord::Base
 	scope :sorted, lambda { order("questions.created_at DESC")}
 
 	def next
-		Question.limit(1).order("id ASC").where("id > ?", id).first
+		Question.limit(1).order("id asc").where("id > ?", id).first
 	end
+
+	def previous
+		Question.limit(1).order("id desc").where("id < ?", id).last
+	end
+
+	
 
 end
