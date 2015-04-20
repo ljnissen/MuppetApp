@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   resources :answers
   
-  match ':controller(/:action(/:id))', :via => [:get, :post, :patch]
+  match ':controller(/:action(/:id))', :via => [:get, :post, :patch, :delete]
   #match ':controller(/:id(/:action))', :via => [:get, :post]
   #resources :gonzos
   #resources :quizzes

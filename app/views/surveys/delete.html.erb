@@ -4,7 +4,7 @@
 
 <div class = "survey_delete">
 
-  <%= form_for(:survey, :url => {:action => 'destroy', :id => @survey.id}) do |f| %>
+  <%= form_for(@survey, :url => {:action => 'destroy', :id => @survey.id}) do |f| %>
 
     <p>Are you sure you permanently want to delete the survey?</p>
     
