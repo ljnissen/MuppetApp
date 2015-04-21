@@ -10,16 +10,23 @@
   </dl>
 </div>
 
-<div class="form-group">
-		<td><% for question in @survey.questions do %>
+<table class="table table-striped">
+  <thead>
+    <tr>
+		  <% for question in @survey.questions do  %>
+          
 					<li><%= h question.content %></li>
-					<ul>
+				
 						<% for answer in question.answers do %>
-							<li><%= h answer.content %></li>
+							<li><%= h answer.content %>
+              <%= radio_button :answer, "", :class => 'btn btn-xs', :title => "#{ t('.show', :default => t('helpers.links.show')) }" %>
+              <%= label :answer, "" %></li>
 						<% end %>
-					</ul>
+					</li>
 			<% end %>
-		</td>
+		</tr>
+  </thead>
+</table>
 
   <%= link_to t('.back', :default => t("helpers.links.back")),
               surveys_path, :class => 'btn btn-default'  %>
@@ -30,8 +37,6 @@
               :method => :delete,
               :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
               :class => 'btn btn-danger' %>
-  
-    <%= link_to('Delete', :action => :delete, :class => 'action_delete')  %>
   
 </div>
 
