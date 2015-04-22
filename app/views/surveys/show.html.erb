@@ -10,23 +10,25 @@
   </dl>
 </div>
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-		  <% for question in @survey.questions do  %>
-          
-					<li><%= h question.content %></li>
-				
-						<% for answer in question.answers do %>
-							<li><%= h answer.content %>
-              <%= radio_button :answer, "", :class => 'btn btn-xs', :title => "#{ t('.show', :default => t('helpers.links.show')) }" %>
-              <%= label :answer, "" %></li>
-						<% end %>
-					</li>
-			<% end %>
-		</tr>
-  </thead>
-</table>
+    <table class="col-md-10">
+       
+        <thead>
+          <tr>
+            <% for question in @survey.questions do  %>
+                
+                <li><%= h question.content %></li> 
+                  <% for answer in question.answers do %>
+                    <li><%= h answer.content %>
+                      <%= label :answer, "" %>
+                      <%= radio_button :answer, :correct_answer, true %>
+                      <% end %>
+                    </li>
+                </li>
+            <% end %>
+          </tr>
+        </thead>  
+    </table>
+
 
   <%= link_to t('.back', :default => t("helpers.links.back")),
               surveys_path, :class => 'btn btn-default'  %>
@@ -38,6 +40,5 @@
               :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
               :class => 'btn btn-danger' %>
   
-</div>
 
 

@@ -5,6 +5,10 @@ class Question < ActiveRecord::Base
 
 	scope :sorted, lambda { order("questions.created_at DESC")}
 
+	def points
+		self.answers.count
+	end
+
 	def next
 		Question.limit(1).order("id asc").where("id > ?", id).first
 	end

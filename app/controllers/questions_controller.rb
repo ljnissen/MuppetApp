@@ -48,6 +48,9 @@ class QuestionsController < ApplicationController
     end
   end 
 
+  def check
+  end
+
   def delete
     @question = Question.find(params[:id])
   end

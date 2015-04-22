@@ -1,0 +1,18 @@
+    <table class="col-md-10">
+       
+        <thead>
+          <tr>
+      		  <% for question in @survey.questions do  %>
+                
+      					<li><%= h question.content %></li> 
+      						<% for answer in question.answers do %>
+      							<li><%= h answer.content %>
+                      <%= label :answer, "IQ 120" %>
+                      <%= radio_button :answer, :correct_answer, true %>
+                      <% end %>
+                    </li>
+      					</li>
+      			<% end %>
+      		</tr>
+        </thead>  
+    </table>
