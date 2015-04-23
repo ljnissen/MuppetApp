@@ -18,11 +18,11 @@
                 
                 <li><%= h question.content %></li> 
                   <% for answer in question.answers do %>
-                    <li><%= h answer.content %>
+                  <li><%= h answer.content %>
                       <%= label :answer, "" %>
                       <%= radio_button :answer, :correct_answer, true %>
-                      <% end %>
-                    </li>
+                  <% end %>
+                  </li>
                 </li>
             <% end %>
           </tr>
