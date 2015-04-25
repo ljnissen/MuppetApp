@@ -10,24 +10,23 @@
   </dl>
 </div>
 
-    <table class="col-md-10">
-       
-        <thead>
-          <tr>
-            <% for question in @survey.questions do  %>
-                
-                <li><%= h question.content %></li> 
-                  <% for answer in question.answers do %>
-                  <li><%= h answer.content %>
-                      <%= label :answer, "" %>
-                      <%= radio_button :answer, :correct_answer, true %>
-                  <% end %>
-                  </li>
+  <table class="col-md-10">
+     
+      <thead>
+        <tr>
+          <% for question in @survey.questions do  %>
+              
+              <li><%= h question.content %></li> 
+                <% for answer in question.answers do %>
+                <li><%= h answer.content %>
+                    <%= check_box_tag "correct_answer", "yes", answer.correct_answer %>
+                <% end %>
                 </li>
-            <% end %>
-          </tr>
-        </thead>  
-    </table>
+              </li>
+          <% end %>
+        </tr>
+      </thead>
+  </table>
 
 
   <%= link_to t('.back', :default => t("helpers.links.back")),

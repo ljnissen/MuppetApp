@@ -1,0 +1,81 @@
+          <!--<th>Survey: </th>
+          <td><%= f.text_field(#:name)%></td>
+            <%= f.error_messages %>
+
+            <%= f.fields_for #:questions do |builder| %>
+                <%= render #'question_fields', :f => builder %>
+            <% #end %>
+        </tr>-->
+
+        <div class="fields">
+	<p>
+	  <%= f.label :content, "Question" %><br /><br />
+	  <%= f.text_area :content, :rows => 3 %><br /><br />
+	</p>
+</div>
+
+
+
+Started POST "/surveys/create" for 127.0.0.1 at 2015-04-14 15:54:05 +0200
+Processing by SurveysController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"OrJOK58pUNlwpnx3R8UD+spnSl9FR
+KBTnNqGqdq5zRTabVlQMt6mddt1QMj8M+HsRLDxYUEBn6sMTCJgxbfArQ==", "survey"=>{"name"=
+>"Tatuerad tjej quiz", "questions_attributes"=>{"0"=>{"content"=>"Var kommer den
+ tatuerade tjejen från?", "answers_attributes"=>{"0"=>{"content"=>"Uddevalla"},
+"1"=>{"content"=>"Kungälv"}, "2"=>{"content"=>"Borås"}, "3"=>{"content"=>"Götebo
+rg"}}}, "1"=>{"content"=>"", "answers_attributes"=>{"0"=>{"content"=>""}, "1"=>{
+"content"=>""}, "2"=>{"content"=>""}, "3"=>{"content"=>""}}}, "2"=>{"content"=>"
+", "answers_attributes"=>{"0"=>{"content"=>""}, "1"=>{"content"=>""}, "2"=>{"con
+tent"=>""}, "3"=>{"content"=>""}}}}}, "commit"=>"Submit"}
+  ←[1m←[35m (15.6ms)←[0m  begin transaction
+  ←[1m←[36mSQL (0.0ms)←[0m  ←[1mINSERT INTO "surveys" ("name", "created_at", "up
+dated_at") VALUES (?, ?, ?)←[0m  [["name", "Tatuerad tjej quiz"], ["created_at",
+ "2015-04-14 13:54:05.607421"], ["updated_at", "2015-04-14 13:54:05.607421"]]
+  ←[1m←[35mSQL (0.0ms)←[0m  INSERT INTO "questions" ("content", "survey_id", "cr
+eated_at", "updated_at") VALUES (?, ?, ?, ?)  [["content", "Var kommer den tatue
+rade tjejen från?"], ["survey_id", 5], ["created_at", "2015-04-14 13:54:05.66992
+1"], ["updated_at", "2015-04-14 13:54:05.669921"]]
+  ←[1m←[36mSQL (0.0ms)←[0m  ←[1mINSERT INTO "answers" ("content", "question_id",
+ "created_at", "updated_at") VALUES (?, ?, ?, ?)←[0m  [["content", "Uddevalla"],
+ ["question_id", 5], ["created_at", "2015-04-14 13:54:05.685546"], ["updated_at"
+, "2015-04-14 13:54:05.685546"]]
+  ←[1m←[35mSQL (0.0ms)←[0m  INSERT INTO "answers" ("content", "question_id", "cr
+eated_at", "updated_at") VALUES (?, ?, ?, ?)  [["content", "Kungälv"], ["questio
+n_id", 5], ["created_at", "2015-04-14 13:54:05.685546"], ["updated_at", "2015-04
+-14 13:54:05.685546"]]
+  ←[1m←[36mSQL (0.0ms)←[0m  ←[1mINSERT INTO "answers" ("content", "question_id",
+ "created_at", "updated_at") VALUES (?, ?, ?, ?)←[0m  [["content", "Borås"], ["q
+uestion_id", 5], ["created_at", "2015-04-14 13:54:05.701171"], ["updated_at", "2
+015-04-14 13:54:05.701171"]]
+  ←[1m←[35mSQL (0.0ms)←[0m  INSERT INTO "answers" ("content", "question_id", "cr
+eated_at", "updated_at") VALUES (?, ?, ?, ?)  [["content", "Göteborg"], ["questi
+on_id", 5], ["created_at", "2015-04-14 13:54:05.701171"], ["updated_at", "2015-0
+4-14 13:54:05.701171"]]
+  ←[1m←[36m (140.6ms)←[0m  ←[1mcommit transaction←[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 391ms (ActiveRecord: 156.2ms)
+
+    <table class="col-md-10">
+       
+        <thead>
+          <tr>
+            <% for question in @survey.questions do  %>
+                
+                <li><%= h question.content %></li> 
+                  <% for answer in question.answers do %>
+                  <li><%= h answer.content %>
+                      <%= label :answer, "" %>
+                      <%= check_box(:answer, :correct_answer) %>
+                  <% end %>
+                  </li>
+                </li>
+            <% end %>
+          </tr>
+        </thead>  
+    </table>
+
+  <div class="col-md-10">
+    <input type="text" value="I&#39;m not fat. I&#39;m having a breakdown." name="survey[questions_attributes][0][answers_attributes][0][content]" id="survey_questions_attributes_0_answers_attributes_0_content" />
+    <input name="survey[questions_attributes][0][answers_attributes][0][correct_answer]" type="hidden" value="0" />
+    <input type="checkbox" value="1" name="survey[questions_attributes][0][answers_attributes][0][correct_answer]" id="survey_questions_attributes_0_answers_attributes_0_correct_answer" />
+</div>
