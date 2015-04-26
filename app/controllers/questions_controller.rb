@@ -49,6 +49,7 @@ class QuestionsController < ApplicationController
   end 
 
   def check
+    
   end
 
   def delete

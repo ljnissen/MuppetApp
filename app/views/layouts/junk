@@ -1,0 +1,34 @@
+LJ@REDDHAREN /c/Sites/muppet2/muppet_app (master)
+$ rake routes
+       Prefix Verb           URI Pattern                            Controller#Action
+         root GET            /                                      surveys#index
+      surveys GET            /surveys(.:format)                     surveys#index
+              POST           /surveys(.:format)                     surveys#create
+   new_survey GET            /surveys/new(.:format)                 surveys#new
+  edit_survey GET            /surveys/:id/edit(.:format)            surveys#edit
+
+       survey GET            /surveys/:id(.:format)                 surveys#show
+
+              PATCH          /surveys/:id(.:format)                 surveys#update
+              PUT            /surveys/:id(.:format)                 surveys#update
+              DELETE         /surveys/:id(.:format)                 surveys#destroy
+    questions GET            /questions(.:format)                   questions#index
+              POST           /questions(.:format)                   questions#create
+ new_question GET            /questions/new(.:format)               questions#new
+edit_question GET            /questions/:id/edit(.:format)          questions#edit
+     question GET            /questions/:id(.:format)               questions#show
+              PATCH          /questions/:id(.:format)               questions#update
+              PUT            /questions/:id(.:format)               questions#update
+              DELETE         /questions/:id(.:format)               questions#destroy
+      answers GET            /answers(.:format)                     answers#index
+              POST           /answers(.:format)                     answers#create
+   new_answer GET            /answers/new(.:format)                 answers#new
+  edit_answer GET            /answers/:id/edit(.:format)            answers#edit
+
+       answer GET            /answers/:id(.:format)                 answers#show
+
+              PATCH          /answers/:id(.:format)                 answers#update
+              PUT            /answers/:id(.:format)                 answers#update
+              DELETE         /answers/:id(.:format)                 answers#destroy
+              GET|POST|PATCH /:controller(/:action(/:id))(.:format) :controller#
+              :action

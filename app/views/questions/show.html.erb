@@ -10,8 +10,7 @@
 					<ul>
 							<% for answer in question.answers do %>
 								<li><%= h answer.content %></li>
-								<%= label :answer, :correct_answer %>
-								<%= radio_button :answer, :correct_answer, true %>
+								<%= check_box_tag(:correct_answer, "yes", false) %>
 							<% end %>
 					</ul>
 			<% end %>
