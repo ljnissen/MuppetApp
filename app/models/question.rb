@@ -4,17 +4,17 @@ class Question < ActiveRecord::Base
 	has_many :correct_answers, :dependent => :destroy
 	accepts_nested_attributes_for :answers, :reject_if => lambda { |a| a[:content].blank? }
 
-	scope :sorted, lambda { order("questions.created_at DESC")}
+	scope :sorted, lambda { order("questions.created_at ASC")}
 
 	def points
 		self.answers.count
 	end
 
 	def next
-		Question.limit(1).order("id asc").where("id > ?", id).first
+		Question.limit(1).order("ID ASC").where("id > ?", id).first
 	end
 
 	def previous
-		Question.limit(1).order("id desc").where("id < ?", id).last
+		Question.limit(1).order("ID DESC").where("id < ?", id).last
 	end
 end

@@ -11,7 +11,7 @@ class QuestionsController < ApplicationController
   def show
     @question = Question.find(params[:id])
     @survey = Survey.find(params[:id])
-    @questions = Question.all.sorted
+    @questions = Question.all
     @surveys = Survey.all
   end
 

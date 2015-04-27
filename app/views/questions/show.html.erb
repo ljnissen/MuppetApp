@@ -3,28 +3,26 @@
   <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
 </div>
 
-<div class="form-group">
-	<div class = "field">
-		<td><% for question in @survey.questions do %>
-					<li><%= h question.content %></li>
-					<ul>
-							<% for answer in question.answers do %>
-								<li><%= h answer.content %></li>
-								<%= check_box_tag(:correct_answer, "yes", false) %>
-							<% end %>
-					</ul>
-			<% end %>
-		</td>
-	</div>
-
+<table class="col-md-10">
+	<thead>
+		<% for question in @survey.questions do %>
+			<li><%= h question.content %></li>
+				<% for answer in question.answers do %>
+					<li><%= h answer.content %>
+					<%= check_box_tag(:correct_answer, "yes", false) %></li>
+				<% end %>
+		<% end %>
+	</thead>
+</table>
   <%= link_to t('.back', :default => t("helpers.links.back")),
               surveys_path, :class => 'btn btn-default'  %>
   <%= link_to t('Previous question', :default => t("helpers.links.previous")),
               @question.previous, :class => 'btn btn-default' %>
   <%= link_to t('Next question', :default => t("helpers.links.next")),
-              @question.next, :class => 'btn btn-default' %>
+            @question.next, :class => 'btn btn-default' %>
   
-</div>
+  
+
 
 
 
