@@ -10,11 +10,5 @@ class Question < ActiveRecord::Base
 		self.answers.count
 	end
 
-	def next
-		Question.limit(1).order("ID ASC").where("id > ?", id).first
-	end
 
-	def previous
-		Question.limit(1).order("ID DESC").where("id < ?", id).last
-	end
 end
