@@ -1,18 +1,11 @@
 Rails.application.routes.draw do
 
-  get 'correct_answers/index'
-
-  get 'correct_answers/show'
-
-  get 'correct_answers/new'
-
-  get 'correct_answers/edit'
-
-  get 'correct_answers/delete'
 
   root :to => "surveys#index"
   
+  
   resources :surveys
+  match "questions/show", :to => "questions#index", :via => :get
   resources :questions 
   
 
