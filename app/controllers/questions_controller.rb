@@ -4,15 +4,17 @@ class QuestionsController < ApplicationController
   
   def index
     # @questions = Question.where(:survey_id => @survey.id).sorted
-    @questions = Question.all.sorted
+    @questions = Question.all
     @surveys = Survey.all
+    @survey = Survey.first
   end
 
   def show
     #@question = Question.find(params[:id])
-    @survey = Survey.find(params[:id])
-    @questions = Question.all
     @surveys = Survey.all
+    @survey = Survey.find(params[:id])
+    @question = Question.find(params[:id])
+    @questions = Question.all
   end
 
   def new

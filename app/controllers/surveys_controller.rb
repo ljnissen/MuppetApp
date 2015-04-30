@@ -11,9 +11,9 @@ class SurveysController < ApplicationController
   # GET /surveys/1
   # GET /surveys/1.json
   def show
+    @survey = Survey.find(params[:id])
     @surveys = Survey.all
     #@surveys = Survey.where(:question_id => @question.id).all
-    @survey = Survey.find(params[:id])
   end
 
   # GET /surveys/new

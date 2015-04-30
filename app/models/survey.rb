@@ -12,4 +12,8 @@ class Survey < ActiveRecord::Base
 	def previous
 		Survey.limit(1).order("id DESC").where("id < ?", id).last
 	end
+
+	def first_record
+		Survey.where("id > ?", id).first
+	end
 end
