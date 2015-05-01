@@ -1,10 +1,11 @@
         Prefix Verb                  URI Pattern                                                   Controller#Action
           root GET                   /                            surveys#index
-       surveys GET                   /surveys(.:format)           surveys#index
-               POST                  /surveys(.:format)           surveys#create
-    new_survey GET                   /surveys/new(.:format)       surveys#new
-   edit_survey GET                   /surveys/:id/edit(.:format)  surveys#edit
-        survey GET                   /surveys/:id(.:format)       surveys#show
+       surveys GET                   /surveys(.:format)                                                          surveys#index
+               POST                  /surveys(.:format)       
+                                                                 surveys#create
+    new_survey GET                   /surveys/new(.:format)      surveys#new
+   edit_survey GET                   /surveys/:id/edit(.:format) surveys#edit
+        survey GET                   /surveys/:id(.:format)      surveys#show
                PATCH                 /surveys/:id(.:format)       surveys#update
                PUT                   /surveys/:id(.:format)       surveys#update
                DELETE                /surveys/:id(.:format)       surveys#destroy
@@ -18,19 +19,12 @@ questions_show GET                   /questions/show(.:format)    questions#inde
                PUT                   /questions/:id(.:format)     questions#update
                DELETE                /questions/:id(.:format)     questions#destroy
        answers GET                   /answers(.:format)           answers#index
-               POST                  /answers(.:format)                     answ
-ers#create
-    new_answer GET                   /answers/new(.:format)                 answ
-ers#new
-   edit_answer GET                   /answers/:id/edit(.:format)            answ
-ers#edit
-        answer GET                   /answers/:id(.:format)                 answ
-ers#show
-               PATCH                 /answers/:id(.:format)                 answ
-ers#update
-               PUT                   /answers/:id(.:format)                 answ
-ers#update
-               DELETE                /answers/:id(.:format)                 answ
-ers#destroy
+               POST                  /answers(.:format)           answers#create
+    new_answer GET                   /answers/new(.:format)       answers#new
+   edit_answer GET                   /answers/:id/edit(.:format)  answers#edit
+        answer GET                   /answers/:id(.:format)       answers#show
+               PATCH                 /answers/:id(.:format)       answers#update
+               PUT                   /answers/:id(.:format)       answers#update
+               DELETE                /answers/:id(.:format)       answers#destroy
                GET|POST|PATCH|DELETE /:controller(/:action(/:id))(.:format) :con
 troller#:action

@@ -19,6 +19,8 @@ class QuestionsController < ApplicationController
 
   def new
     @question = Question.new({:survey_id => @survey.id})
+    @surveys = Survey.all
+    @page_count = Page.count + 1
   end
 
   # POST /surveys
@@ -29,6 +31,8 @@ class QuestionsController < ApplicationController
         flash[:notice] = 'Question was successfully created.' 
         redirect_to(:action => 'index', :survey_id => @survey.id)
       else
+        @surveys = Survey.all
+        @page_count = Page.count + 1
         render('new') 
       end
   end
@@ -36,6 +40,8 @@ class QuestionsController < ApplicationController
   # GET /surveys/1/edit
   def edit
     @question = Question.find(params[:id])
+    @surveys = Survey.all
+    @page_count = Page.count
   end
 
   # PATCH/PUT /surveys/1
@@ -46,6 +52,8 @@ class QuestionsController < ApplicationController
       flash[:notice] = "Question updated successfully."
       redirect_to(:action => 'show', :id => @question.id, :survey_id => @survey.id)
     else
+      @surveys = Survey.all
+      @page_count = Page.count
       render('edit')
     end
   end 

@@ -23,6 +23,8 @@ class SurveysController < ApplicationController
       question = @survey.questions.build
       4.times { question.answers.build }
     end
+    @survey_count = Survey.count + 1
+    @surveys = Survey.all
   end
 
   # POST /surveys
@@ -33,13 +35,16 @@ class SurveysController < ApplicationController
         flash[:notice] = 'Survey was successfully created.' 
         redirect_to(:action => 'index')
       else
+        @survey_count = Survey.count + 1
         render('new') 
       end
   end
 
   # GET /surveys/1/edit
   def edit
+    @surveys = Survey.order('id ASC')            
     @survey = Survey.find(params[:id])
+    @survey_count = Survey.count
   end
 
     # PATCH/PUT /surveys/1
@@ -54,6 +59,7 @@ class SurveysController < ApplicationController
       redirect_to(:action => 'show', :id => @survey.id)
     else
       #Else redisplay the 'edit' form.
+      @survey_count = Survey.count
       render('edit')
     end
   end 
@@ -78,6 +84,6 @@ class SurveysController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def survey_params
-      params.require(:survey).permit(:name, questions_attributes: [:survey_id, :id, :content, answers_attributes: [:id, :question_id, :correct_answer, :content]])
+      params.require(:survey).permit(:name, questions_attributes: [:survey_id, :id, :content, answers_attributes: [:id, :question_id, :correct_answer, :content], correct_answers_attributes: [:guess, :question_id]])
     end
 end
