@@ -6,7 +6,6 @@ class CorrectAnswersController < ApplicationController
   end
 
   def new
-    # @question = Question.new({:survey_id => @survey.id})
   end
 
   def edit

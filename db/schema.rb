@@ -22,9 +22,10 @@ ActiveRecord::Schema.define(version: 20150422194638) do
   end
 
   create_table "correct_answers", force: :cascade do |t|
+    t.integer  "question_id"
     t.boolean  "guess"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "questions", force: :cascade do |t|
