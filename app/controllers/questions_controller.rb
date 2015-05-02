@@ -18,9 +18,9 @@ class QuestionsController < ApplicationController
   end
 
   def new
-    @question = Question.new({:survey_id => @survey.id})
+    @question = Question.new
+    @questions = Question.all
     @surveys = Survey.all
-    @page_count = Page.count + 1
   end
 
   # POST /surveys
@@ -29,7 +29,7 @@ class QuestionsController < ApplicationController
       @question = Question.new(question_params)
       if @question.save
         flash[:notice] = 'Question was successfully created.' 
-        redirect_to(:action => 'index', :survey_id => @survey.id)
+        redirect_to(:controller => :surveys, :action => :index)
       else
         @surveys = Survey.all
         @page_count = Page.count + 1

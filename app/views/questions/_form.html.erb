@@ -1,0 +1,25 @@
+<%= form_for :survey, :html => { :class => 'form-horizontal' } do |f| %>
+
+      <legend>Question</legend>
+        <div class="form-group">
+          
+            <div class="col-md-offset-2 col-md-10">
+                <%= f.fields_for :questions do |ff| %>
+                  <%= render 'question_fields', :f => ff %>
+                    <%= ff.fields_for :answers do |fff| %>
+                        <%= render 'answer_fields', :f => fff %>
+                    <% end %>
+                <% end %>
+            </div>
+        </div> 
+        <div class="form-group">
+          <div class='col-md-offset-1 col-md-10'>
+            <%= link_to t('.back', :default => t("helpers.links.surveys")),
+                    surveys_path, :class => 'btn btn-default'  %>
+            <%= f.submit nil, :class => 'btn btn-primary' %>
+            <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                        surveys_path, :class => 'btn btn-default' %>
+          </div>
+        </div>
+<% end %>
+

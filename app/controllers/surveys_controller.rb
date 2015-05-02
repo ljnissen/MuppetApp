@@ -24,18 +24,17 @@ class SurveysController < ApplicationController
       question = @survey.questions.build
       4.times { question.answers.build }
     end
-    @survey_count = Survey.count + 1
   end
 
   # POST /surveys
   # POST /surveys.json
   def create
       @survey = Survey.new(survey_params)
+      @surveys = Survey.all
       if @survey.save
         flash[:notice] = 'Survey was successfully created.' 
-        redirect_to(:action => 'index')
+        redirect_to( :action => :index)
       else
-        @survey_count = Survey.count + 1
         render('new') 
       end
   end
@@ -44,7 +43,6 @@ class SurveysController < ApplicationController
   def edit
     @surveys = Survey.all            
     @survey = Survey.find(params[:id])
-    @survey_count = Survey.count
   end
 
     # PATCH/PUT /surveys/1
@@ -59,7 +57,6 @@ class SurveysController < ApplicationController
       redirect_to(:action => 'show', :id => @survey.id)
     else
       #Else redisplay the 'edit' form.
-      @survey_count = Survey.count
       render('edit')
     end
   end 

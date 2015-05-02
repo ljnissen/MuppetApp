@@ -5,6 +5,8 @@ class Survey < ActiveRecord::Base
 
 	scope :sorted, lambda { order("questions.created_at DESC")}
 
+	#validates_uniqueness_of :name
+
 	def next
 		Survey.limit(1).order("id ASC").where("id > ?", id).first
 	end

@@ -1,0 +1,21 @@
+<td><%= link_to('<< Back to list', {:action => 'index'}, :class => 'back-link') %></td>
+
+<div class = "question_new">
+
+  <%= form_for(:question, :url => {:action => 'create'}) do |f| %>
+
+      <table summary="Question_form_fields">
+        <tr>
+          <td><%= f.label(:survey_id, "Subject") %></td>
+          <td><%= f.select(:survey_id, @surveys.map {|s| [s.name, s.id]} ) %></td>
+        </tr>
+        <tr>
+          <th>Content</th>
+          <td><%= f.text_area(:content) %></td>
+        </tr>
+      </table>
+    <div class="form_buttons">
+      <%= submit_tag("Create question", :class => 'btn btn-primary') %>
+    </div>
+  <% end %>
+</div>
