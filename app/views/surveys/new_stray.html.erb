@@ -16,3 +16,5 @@
       <p><%= f.submit "Submit" %></p>
   <% end %>
 <% end %>
+
+<%= f.select :name, @surveys.map {|s| [s.name, s.id]} %><br/><br/>

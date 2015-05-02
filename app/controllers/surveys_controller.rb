@@ -19,12 +19,12 @@ class SurveysController < ApplicationController
   # GET /surveys/new
   def new
     @survey = Survey.new
+    @surveys = Survey.all
     1.times do 
       question = @survey.questions.build
       4.times { question.answers.build }
     end
     @survey_count = Survey.count + 1
-    @surveys = Survey.all
   end
 
   # POST /surveys
@@ -42,7 +42,7 @@ class SurveysController < ApplicationController
 
   # GET /surveys/1/edit
   def edit
-    @surveys = Survey.order('id ASC')            
+    @surveys = Survey.all            
     @survey = Survey.find(params[:id])
     @survey_count = Survey.count
   end

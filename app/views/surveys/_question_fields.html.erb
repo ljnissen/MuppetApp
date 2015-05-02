@@ -1,5 +1,3 @@
 <div class="form-group">
-  <%= f.label(:survey_id, "Category") %><br/><br/>
-  <%= f.select :survey_id, @surveys.map {|s| [s.name, s.id]} %><br/><br/>
   <%= f.text_field :content, :class => 'control-label col-md-6' %><br/><br/>
 </div>
