@@ -33,7 +33,7 @@ class SurveysController < ApplicationController
       @surveys = Survey.all
       if @survey.save
         flash[:notice] = 'Survey was successfully created.' 
-        redirect_to( :action => :index)
+        redirect_to(:action => :index)
       else
         render('new') 
       end

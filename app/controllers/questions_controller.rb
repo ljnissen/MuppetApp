@@ -3,17 +3,17 @@ class QuestionsController < ApplicationController
   before_action :find_survey
   
   def index
-    # @questions = Question.where(:survey_id => @survey.id).sorted
-    @questions = Question.all
+    @questions = Question.where(:survey_id => @survey.id).sorted
+    #@questions = @survey.questions.all
     @surveys = Survey.all
     @survey = Survey.first
   end
 
   def show
     #@question = Question.find(params[:id])
-    @surveys = Survey.all
+    #@surveys = Survey.all
     @survey = Survey.find(params[:id])
-    @question = Question.find(params[:id])
+    #@question = Question.find(params[:id])
     @questions = Question.all
   end
 
@@ -31,8 +31,7 @@ class QuestionsController < ApplicationController
         flash[:notice] = 'Question was successfully created.' 
         redirect_to(:controller => :surveys, :action => :index)
       else
-        @surveys = Survey.all
-        @page_count = Page.count + 1
+        @surveys = Survey.al
         render('new') 
       end
   end

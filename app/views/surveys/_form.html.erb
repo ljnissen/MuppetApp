@@ -4,13 +4,12 @@
       <div class="form-group">
         
         <div class="col-md-10">
-          <%= f.select(:name, @surveys.map {|s| [s.name, s.id]) %>
+          <%= f.text_field :name, :class => 'control-label col-md-6' %>
         </div>
       </div>
 
       <legend>Question</legend>
-        <div class="form-group">
-          
+        <div class="form-group"> 
             <div class="col-md-offset-2 col-md-10">
                 <%= f.fields_for :questions do |ff| %>
                   <%= render 'question_fields', :f => ff %>
