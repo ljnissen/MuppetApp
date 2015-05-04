@@ -1,6 +1,5 @@
 class SurveysController < ApplicationController
   before_action :set_survey, only: [:show, :edit, :update, :destroy]
-  # before_action :find_question
 
   # GET /surveys
   # GET /surveys.json
@@ -82,5 +81,13 @@ class SurveysController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def survey_params
       params.require(:survey).permit(:name, questions_attributes: [:survey_id, :id, :content, answers_attributes: [:id, :question_id, :correct_answer, :content], correct_answers_attributes: [:guess, :question_id]])
+    end
+
+    def find_survey
+      # If in each action calling this method (find_survey) has :survey_id sent
+      if params[:survey_id]
+        # We will then go to the database and look for (and find) :survey_id and set that to @survey. 
+        @survey = Survey.find(params[:survey_id])
+      end
     end
 end
