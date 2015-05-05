@@ -17,11 +17,11 @@
 
 
   <%= link_to t('.back', :default => t("helpers.links.back")),
-              surveys_path, :class => 'btn btn-default'  %>
+              surveys_path, :survey_id => @survey.id, :class => 'btn btn-default'  %>
   <%= link_to t('Previous question', :default => t("helpers.links.previous")),
-              {:action => 'show', :id => @survey.previous}, :class => 'btn btn-default' %>
+              {:action => 'show', :id => @survey.previous, :survey_id => @survey.id}, :class => 'btn btn-default' %>
   <%= link_to t('Next question', :default => t("helpers.links.next")),
-             { :action => 'show', :id => @survey.next}, :class => 'btn btn-default' %>
+             { :action => 'show', :id => @survey.next, :survey_id => @survey.id}, :class => 'btn btn-default' %>
 
   
   
