@@ -3,11 +3,10 @@ class QuestionsController < ApplicationController
   before_action :find_survey
   
   def index
-    @survey = Survey.where(:survey_id => @survey.id)
     #@questions = Question.where(:survey_id => @survey.id)
     @surveys = Survey.all
-    @questions = @survey.questions
-    #@questions = Question.where(:survey_id => @survey.id).all 
+    #@questions = @survey.questions.all
+    @questions = Question.where(:survey_id => @survey.id).all 
   end
 
   def show

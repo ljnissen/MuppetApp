@@ -22,7 +22,7 @@
           <%= link_to survey_path(survey), :class => 'btn btn-xs', :title => "#{ t('.show', :default => t('helpers.links.show')) }" do %>
             <%= glyph 'info-sign' %>
           <%- end -%>
-          <%= link_to(question_path({:controller => 'questions', :action => 'index', :id => survey.id, :survey_id => survey.id }), :class => 'btn btn-xs') do %>
+          <%= link_to(questions_path({:controller => 'questions', :action => :index, :survey_id => survey.id }), :class => 'btn btn-xs') do %>
             <%= glyph 'th-list' %>
           <%- end -%>
           <%= link_to edit_survey_path(survey), :class => 'btn btn-xs', :title => "#{ t('.edit', :default => t('helpers.links.edit')) }" do %>
