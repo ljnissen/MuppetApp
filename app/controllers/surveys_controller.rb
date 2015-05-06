@@ -12,7 +12,6 @@ class SurveysController < ApplicationController
   def show
     @survey = Survey.find(params[:id])
     @surveys = Survey.all
-    #@surveys = Survey.where(:question_id => @question.id).all
   end
 
   # GET /surveys/new
@@ -34,14 +33,15 @@ class SurveysController < ApplicationController
         flash[:notice] = 'Survey was successfully created.' 
         redirect_to(:action => :index)
       else
+        @surveys = Survey.all
         render('new') 
       end
   end
 
   # GET /surveys/1/edit
   def edit
-    @surveys = Survey.all            
     @survey = Survey.find(params[:id])
+    @surveys = Survey.all    
   end
 
     # PATCH/PUT /surveys/1
@@ -55,6 +55,7 @@ class SurveysController < ApplicationController
       #If update succeeds, redirect to 'show' action.
       redirect_to(:action => 'show', :id => @survey.id)
     else
+      @surveys = Survey.all 
       #Else redisplay the 'edit' form.
       render('edit')
     end
@@ -81,13 +82,5 @@ class SurveysController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def survey_params
       params.require(:survey).permit(:name, questions_attributes: [:survey_id, :id, :content, answers_attributes: [:id, :question_id, :correct_answer, :content], correct_answers_attributes: [:guess, :question_id]])
-    end
-
-    def find_survey
-      # If in each action calling this method (find_survey) has :survey_id sent
-      if params[:survey_id]
-        # We will then go to the database and look for (and find) :survey_id and set that to @survey. 
-        @survey = Survey.find(params[:survey_id])
-      end
     end
 end

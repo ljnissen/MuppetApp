@@ -4,7 +4,8 @@
       <div class="form-group">
         
         <div class="col-md-10">
-          <%= f.text_field :name, :class => 'control-label col-md-6' %>
+          <%= f.label(:name, "Survey") %>
+          <%= f.select(:name, @surveys.map {|s| [s.name]}) %>
         </div>
       </div>
 

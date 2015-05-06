@@ -3,6 +3,8 @@ class Survey < ActiveRecord::Base
 	
 	accepts_nested_attributes_for :questions , :reject_if => lambda { |a| a[:content].blank? }
 
+	validates_uniqueness_of :name
+
 	scope :sorted, lambda { order("questions.created_at DESC")}
 
 	#validates_uniqueness_of :name
