@@ -18,10 +18,7 @@ class SurveysController < ApplicationController
   def new
     @survey = Survey.new
     @surveys = Survey.all
-    1.times do 
-      question = @survey.questions.build
-      4.times { question.answers.build }
-    end
+
   end
 
   # POST /surveys
@@ -31,7 +28,7 @@ class SurveysController < ApplicationController
       @surveys = Survey.all
       if @survey.save
         flash[:notice] = 'Survey was successfully created.' 
-        redirect_to(:action => :index)
+        redirect_to(:controller => :questions, :action => :new, :survey_id => @survey.id)
       else
         @surveys = Survey.all
         render('new') 

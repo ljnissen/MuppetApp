@@ -6,32 +6,39 @@ class QuestionsController < ApplicationController
     #@questions = Question.where(:survey_id => @survey.id)
     @surveys = Survey.all
     #@questions = @survey.questions.all
-    @questions = Question.where(:survey_id => @survey.id).all 
+    @questions = Question.all 
+
   end
 
   def show
     #@question = Question.find(params[:id])
     @surveys = Survey.all
     @survey = Survey.find(params[:id])
-    @questions = Question.all
+    @questions = Question.where(:survey_id => @survey.id)
     @question = Survey.find(params[:id])
   end
 
   def new
-    @question = Question.new({survey_id => @survey.id})
     @questions = Question.all
-    @surveys = Survey.all
+    @question = Question.new(:survey_id => @survey.id)
+    1.times do
+      question = @survey.questions.build
+      4.times { question.answers.build }
+    end
   end
 
   # POST /surveys
   # POST /surveys.json
   def create
       @question = Question.new(question_params)
+      @survey = Survey.find(params[:id])
+      @surveys = Survey.all
+      @questions = Question.all
       if @question.save
         flash[:notice] = 'Question was successfully created.' 
-        redirect_to(:controller => :surveys, :action => :index, :survey_id => @survey.id)
+        redirect_to(:controller => 'surveys', :action => 'index', :survey_id => @survey.id)
       else
-        @surveys = Survey.all
+        
         render('new') 
       end
   end
@@ -81,7 +88,7 @@ class QuestionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
-      params.require(:question).permit(:survey_id, :id, :content, answers_attributes: [:question_id, :id, :correct_answer, :content])
+      params.require(:question).permit(questions_attributes: [:survey_id, :id, :content, answers_attributes: [:id, :question_id, :correct_answer, :content], correct_answers_attributes: [:guess, :question_id]])
     end
 
     def find_survey

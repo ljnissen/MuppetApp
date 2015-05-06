@@ -23,8 +23,8 @@
 
   <%= link_to t('.back', :default => t("helpers.links.back")),
               surveys_path, :class => 'btn btn-default'  %>
-  <%= link_to t('Next question', :default => t("helpers.links.start")),
-             { :action => 'show', :id => @survey.id, :survey_id => @survey.id }, :class => 'btn btn-default' %>
+  <%= link_to t('.start', :default => t("helpers.links.start")),
+             questions_show_path, :class => 'btn btn-default'  %>
   
-
+# ({:id => @survey.id, :survey_id => @survey.id})
  
