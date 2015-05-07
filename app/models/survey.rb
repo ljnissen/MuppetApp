@@ -1,9 +1,9 @@
 class Survey < ActiveRecord::Base
-	has_many :questions, :dependent => :destroy
+	has_many :questions, inverse_of: :survey, :dependent => :destroy
 	
 	accepts_nested_attributes_for :questions , :reject_if => lambda { |a| a[:content].blank? }
 
-	validates_uniqueness_of :name
+	#validates_uniqueness_of :name
 
 	scope :sorted, lambda { order("questions.created_at DESC")}
 
