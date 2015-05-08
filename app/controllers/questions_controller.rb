@@ -5,7 +5,8 @@ class QuestionsController < ApplicationController
   def index
     #@questions = Question.where(:survey_id => @survey.id)
     @question = Question.first
-    @questions = Question.all
+    #@questions = @survey.questions
+    @questions = Question.where(:survey_id => @survey.id)
     @surveys = Survey.all
     @survey = Survey.first
   end
@@ -19,7 +20,7 @@ class QuestionsController < ApplicationController
 
   def new
     @questions = Question.all
-    @question = Question.new(:survey_id => @survey.id)
+    @question = Question.new({:survey_id => @survey.id})
     1.times do
       question = @survey.questions.build
       4.times { question.answers.build }

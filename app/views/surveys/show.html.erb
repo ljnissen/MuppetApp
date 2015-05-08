@@ -32,6 +32,8 @@
               surveys_path, :class => 'btn btn-default'  %>
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
               edit_survey_path(@survey), :class => 'btn btn-default' %>
+  <%= link_to t('.new', :default => t("helpers.links.new")),
+              new_question_path(:action => 'new', :survey_id => @survey.id), :class => 'btn btn-primary'  %>
   <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
               survey_path,
               :method => :delete,
