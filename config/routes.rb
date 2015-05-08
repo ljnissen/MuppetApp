@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :surveys
   match "questions/show", :to => "questions#index", :via => :get
   #match "questions/new", :to => "questions#new", :via => :get
+  match "questions/home", :to => "questions#home", :via => :get
   resources :questions 
   
 

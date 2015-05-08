@@ -2,13 +2,23 @@ class QuestionsController < ApplicationController
   #before_action :set_question, only: [:show, :edit, :update, :destroy]
   before_action :find_survey
   
+  def home
+    @surveys = Survey.all
+    @survey = Survey.first
+    #@questions = Question.where(:survey_id => @survey.id)
+    @question = Question.first
+    #@questions = @survey.questions
+    @questions = Question.where(:survey_id => @survey.id)    
+  end
+
   def index
+    @surveys = Survey.all
+    @survey = Survey.first
     #@questions = Question.where(:survey_id => @survey.id)
     @question = Question.first
     #@questions = @survey.questions
     @questions = Question.where(:survey_id => @survey.id)
-    @surveys = Survey.all
-    @survey = Survey.first
+
   end
 
   def show
