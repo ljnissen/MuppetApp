@@ -13,11 +13,11 @@ class QuestionsController < ApplicationController
 
   def index
     @surveys = Survey.all
-    @survey = Survey.first
-    #@questions = Question.where(:survey_id => @survey.id)
+    #@survey = Survey.last
     @question = Question.first
+    @questions = Question.where(:survey_id => @survey.id).all
     #@questions = @survey.questions
-    @questions = Question.where(:survey_id => @survey.id)
+    #@questions = Question.where(:survey_id => @survey.id)
 
   end
 
