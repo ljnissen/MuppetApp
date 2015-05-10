@@ -10,5 +10,9 @@ class Question < ActiveRecord::Base
 		self.answers.count
 	end
 
+	def reset_attributes
+		update_all correct_answers: :true
+	end
+
 
 end
