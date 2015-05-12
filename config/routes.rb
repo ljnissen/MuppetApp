@@ -1,6 +1,16 @@
 Rails.application.routes.draw do
 
 
+  get 'guesses/index'
+
+  get 'guesses/show'
+
+  get 'guesses/create'
+
+  get 'guesses/edit'
+
+  get 'guesses/update'
+
   root :to => "surveys#index"
   
   
