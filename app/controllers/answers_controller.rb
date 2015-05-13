@@ -1,4 +1,10 @@
 class AnswersController < ApplicationController
+  
+  def check
+    @answer = Answer.find(params[:id])
+    @correct = (params[:guess] == @answers.correct_answer) 
+  end
+
   def index
   end
 
