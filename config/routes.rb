@@ -1,26 +1,18 @@
 Rails.application.routes.draw do
 
-
-  get 'guesses/index'
-
-  get 'guesses/show'
-
-  get 'guesses/create'
-
-  get 'guesses/edit'
-
-  get 'guesses/update'
-
   root :to => "surveys#index"
-  
   
   resources :surveys
   match "questions/show", :to => "questions#index", :via => :get
   #match "questions/new", :to => "questions#new", :via => :get
+  
   resources :questions 
   
-
-  resources :answers
+  resources :answers do
+    member do
+      post 'check'
+    end
+  end
   
   match ':controller(/:action(/:id))', :via => [:get, :post, :patch, :delete]
   #match ':controller(/:id(/:action))', :via => [:get, :post]
