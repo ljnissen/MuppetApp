@@ -81,8 +81,17 @@ class QuestionsController < ApplicationController
 
   def check
     @question = Question.find(params[:id])
-    @correct = (params[:guess] == @questions.answers.correct_answer)
-    redirect_to(questions_path)  
+    if(params[:guess] == @question.answer.correct_answer)
+    
+      format.html { redirect_to @question, notice: 'Correct answer!' }
+      format.json { render :show, status: :created, location: @question }
+
+    else
+      
+      format.html { redirect_to @question, notice: 'Sorry, your answer was wrong.' }
+      format.json { render :show, status: :created, location: @question }
+    
+    end  
   end
 
   private
