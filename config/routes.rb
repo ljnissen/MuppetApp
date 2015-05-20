@@ -6,13 +6,13 @@ Rails.application.routes.draw do
   match "questions/show", :to => "questions#index", :via => :get
   #match "questions/new", :to => "questions#new", :via => :get
   
-  resources :questions 
-  
-  resources :answers do
+  resources :questions do
     member do
       post 'check'
     end
-  end
+  end 
+  
+  resources :answers 
   
   match ':controller(/:action(/:id))', :via => [:get, :post, :patch, :delete]
   #match ':controller(/:id(/:action))', :via => [:get, :post]

@@ -79,6 +79,12 @@ class QuestionsController < ApplicationController
     redirect_to(:action => 'index', :survey_id => @survey.id)
   end
 
+  def check
+    @question = Question.find(params[:id])
+    @correct = (params[:guess] == @questions.answers.correct_answer)
+    redirect_to(questions_path)  
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_question
