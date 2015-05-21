@@ -1,6 +1,6 @@
 <% @answers.each do |answer| %>
  <tr>
- 	<td><%= answer.correct_answer %></td>
+ 	<td><%= answer.guess %></td>
  	<td><%= button_to 'Guess', check_answer_path(answer), method: post %></td>
  </tr>
 <% end %>
