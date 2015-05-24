@@ -21,22 +21,8 @@
   <%= link_to t('Previous question', :default => t("helpers.links.previous")),
               {:action => 'show', :id => @survey.previous, :survey_id => @survey.id}, :class => 'btn btn-default' %>
   <%= link_to t('Next question', :default => t("helpers.links.next")),
-            surveys_path({:action => 'show', :id => @survey.next, :survey_id => @survey.id}), answers_path({ :id => :guess, :method => :post}), :class => 'btn btn-default' %>
-  <%= form_for @survey, :html => { :class => 'form-horizontal' } do |f| %>
+            surveys_path({:action => 'show', :id => @survey.next, :survey_id => @survey.id}), answers_path(:guess, @answer), :method => :post, :class => 'btn btn-default' %>
 
-      <legend>Question</legend>
-        <div class="form-group">
-          
-            <div class="col-md-offset-2 col-md-10">
-                <%= f.fields_for :questions do |ff| %>
-                  <%= render 'question_fields', :f => ff %>
-                    <%= ff.fields_for :answers do |fff| %>
-                        <%= render 'answerii_fields', :f => fff %>
-                    <% end %>
-                <% end %>
-            </div>
-        </div> 
-<% end %>
   
 
   

@@ -99,7 +99,7 @@ class QuestionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
-      params.require(:question).permit(questions_attributes: [:survey_id, :id, :content, answers_attributes: [:id, :question_id, :correct_answer, :content], correct_answers_attributes: [:guess, :question_id]])
+      params.require(:question).permit(questions_attributes: [:survey_id, :id, :content, answers_attributes: [:id, :question_id, :correct_answer, :guess, :content], correct_answers_attributes: [:guess, :question_id]])
     end
 
     def find_survey

@@ -1,9 +1,9 @@
-<%= form_for :survey, :html => { :class => 'form-horizontal' } do |f| %>
+<%= form_for @survey, :html => { :class => 'form-horizontal' } do |f| %>
 
     <legend>Category</legend>
       <div class="form-group">    
         <div class="col-md-10">
-          <%= f.select(:name, "Do you want to use an existing category or create a new one?" %>
+          
           <%= f.select(:name, @surveys.map {|s| [s.name, s.id]}) %>
         </div>
       </div>
