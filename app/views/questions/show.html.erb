@@ -10,6 +10,7 @@
 				<% for answer in question.answers do %>
 					<li><%= h answer.content %>
 					<%= check_box_tag(:guess, "yes", false) %></li>
+
 				<% end %>
 		<% end %>
 	</thead>
@@ -21,9 +22,9 @@
   <%= link_to t('Previous question', :default => t("helpers.links.previous")),
               {:action => 'show', :id => @survey.previous, :survey_id => @survey.id}, :class => 'btn btn-default' %>
   <%= link_to t('Next question', :default => t("helpers.links.next")),
-            surveys_path({:action => 'show', :id => @survey.next, :survey_id => @survey.id}), answers_path(:guess, @answer), :method => :post, :class => 'btn btn-default' %>
+            surveys_path({:action => 'show', :id => @survey.next, :survey_id => @survey.id}), :class => 'btn btn-default' %>
 
-  
+	# answers_path(:guess => @answer.guess, :method => :post)   
 
   
   

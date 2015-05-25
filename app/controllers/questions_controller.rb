@@ -11,7 +11,7 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @answers = Answer.all
+    @answer = Answer.all
     @question = Survey.find(params[:id])
     @questions = Question.where(:survey_id => @survey.id)
     @surveys = Survey.all
