@@ -6,11 +6,8 @@ Rails.application.routes.draw do
   match "questions/show", :to => "questions#index", :via => :get
   #match "questions/new", :to => "questions#new", :via => :get
   
-  resources :questions do
-    member do
-      post 'check'
-    end
-  end 
+  resources :questions, :quiz_guess => :put 
+  
   
   resources :answers 
   

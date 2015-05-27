@@ -65,8 +65,9 @@ class QuestionsController < ApplicationController
     end
   end 
 
-  def check
-    
+  def quiz_guess
+    # Mark user guess
+    redirect_to questions_show_path
   end
 
   def delete

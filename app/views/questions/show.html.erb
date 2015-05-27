@@ -5,16 +5,15 @@
 
 <table class="col-md-10">
 	<thead>
-		<% for question in @survey.questions do %>
-			<li><%= h question.content %></li>
-				<% for answer in question.answers do %>
-					<li><%= h answer.content %>
-						<%= check_box_tag(:guess, "yes", false) %>
-						<%= form_for answer, :html => { :multipart => true } do |f| %>
-								<%= f.check_box(:guess) %>	
-						<% end %>
-					</li>
-				<% end %>
+		<%= form_for quiz_guess_path, :method => :put do %>
+			<% for question in @survey.questions do %>
+				<li><%= h question.content %></li>
+					<% for answer in question.answers do %>
+						<li><%= h answer.content %>
+							<%= check_box_tag(:guess, "yes", false) %>
+						</li>
+					<% end %>
+			<% end %>
 		<% end %>
 	</thead>
 </table>
