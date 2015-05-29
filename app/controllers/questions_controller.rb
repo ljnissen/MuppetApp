@@ -4,10 +4,10 @@ class QuestionsController < ApplicationController
   
   def index
     #@questions = Question.where(:survey_id => @survey.id)
+    @survey = Survey.first
+    @surveys = Survey.all
     @question = Question.first
     @questions = Question.where(:survey_id => @survey.id)
-    @surveys = Survey.all
-    @survey = Survey.first
   end
 
   def show
@@ -66,8 +66,12 @@ class QuestionsController < ApplicationController
   end 
 
   def quiz_guess
-    # Mark user guess
-    redirect_to questions_show_path
+    @answer.update_all(["guess = ?", true])
+    if @answer.update_attributes(answer_params)
+      redirect_to(:controller => @questions, :action => 'show', :id => @survey.next, :survey_id => @survey.id)
+    else
+      redirect_to questions_show_path
+    end
   end
 
   def delete
@@ -101,7 +105,12 @@ class QuestionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
-      params.require(:question).permit(questions_attributes: [:survey_id, :id, :content, answers_attributes: [:id, :question_id, :correct_answer, :guess, :content], correct_answers_attributes: [:guess, :question_id]])
+      params.require(:question).permit(questions_attributes: [:id, :survey_id, :content, :guess, answers_attributes: [:id, :question_id, :content, :correct_answer, :guess]])
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def answer_params
+      params.require(:answer).permit(answers_attributes: [:id, :question_id, :correct_answer, :guess, :content])
     end
 
     def find_survey

@@ -3,11 +3,15 @@ Rails.application.routes.draw do
   root :to => "surveys#index"
   
   resources :surveys
-  match "questions/show", :to => "questions#index", :via => :get
+  
   #match "questions/new", :to => "questions#new", :via => :get
+  match "questions/show", :to => "questions#index", :via => :get
   
-  resources :questions, :quiz_guess => :put 
-  
+  resources :questions do
+    collection do
+      put :quiz_guess
+    end
+  end
   
   resources :answers 
   

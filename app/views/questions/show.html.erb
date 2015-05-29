@@ -5,15 +5,16 @@
 
 <table class="col-md-10">
 	<thead>
-		<%= form_for quiz_guess_path, :method => :put do %>
+		<%= form_for quiz_guess_questions_path, :method => :put do %>
 			<% for question in @survey.questions do %>
 				<li><%= h question.content %></li>
 					<% for answer in question.answers do %>
 						<li><%= h answer.content %>
-							<%= check_box_tag(:guess, "yes", false) %>
+							<%= check_box_tag(:guess, false) %>
 						</li>
 					<% end %>
 			<% end %>
+		  <%= submit_tag "Your guess", data: {:controller => @questions, :action => :quiz_guess}, :class => 'btn btn-default' %>
 		<% end %>
 	</thead>
 </table>
@@ -24,14 +25,4 @@
   <%= link_to t('Previous question', :default => t("helpers.links.previous")),
               {:action => 'show', :id => @survey.previous, :survey_id => @survey.id}, :class => 'btn btn-default' %>
   <%= link_to t('Next question', :default => t("helpers.links.next")),
-             surveys_path({:guess => @answer}), :method => :post, :class => 'btn btn-default' %>
-
-	  
-
-  
-  
-
-
-
-
-#surveys_path({:action => 'show', :id => @survey.next, :survey_id => @survey.id}),
+             {:action => 'show', :id => @survey.next, :survey_id => @survey.id}, :class => 'btn btn-default' %>
