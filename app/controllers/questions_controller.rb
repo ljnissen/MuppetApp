@@ -4,13 +4,15 @@ class QuestionsController < ApplicationController
   
   def index
     #@questions = Question.where(:survey_id => @survey.id)
-    @question = Question.first
+    @question = Question.where(:survey_id => @survey.id)
     @questions = Question.all
     @surveys = Survey.all
     @survey = Survey.first
   end
 
   def show
+    @answer = Survey.find(params[:id])
+    @answers = Answer.where(:survey_id => @survey.id)
     @question = Survey.find(params[:id])
     @questions = Question.where(:survey_id => @survey.id)
     @surveys = Survey.all
@@ -79,6 +81,11 @@ class QuestionsController < ApplicationController
     redirect_to(:action => 'index', :survey_id => @survey.id)
   end
 
+  def quiz_guess
+    Answer.update_all(["guess", false])
+    redirect_to questions_path
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_question
@@ -87,7 +94,7 @@ class QuestionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
-      params.require(:question).permit(questions_attributes: [:survey_id, :id, :content, answers_attributes: [:id, :question_id, :correct_answer, :content], correct_answers_attributes: [:guess, :question_id]])
+      params.require(:question).permit(questions_attributes: [:survey_id, :id, :content, answers_attributes: [:id, :question_id, :correct_answer, :content, :guess], correct_answers_attributes: [:guess, :question_id]])
     end
 
     def find_survey
