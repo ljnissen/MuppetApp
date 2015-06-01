@@ -82,8 +82,8 @@ class QuestionsController < ApplicationController
   end
 
   def quiz_guess
-    Answer.update_all(["guess", false])
-    redirect_to questions_path
+    Answer.update_all({"guess" => true})
+      redirect_to(:action => 'show', :survey_id => @survey.id)
   end
 
   private

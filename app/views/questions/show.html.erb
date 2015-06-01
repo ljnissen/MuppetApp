@@ -10,10 +10,9 @@
 			<li><%= h question.content %></li>
 				<% for answer in question.answers do %>
 					<li><%= h answer.content %>
-					<%= check_box_tag("guess", answer.guess) %></li>
+					<%= check_box(answer, :guess, {}, false, true) %></li>
 				<% end %>
 		<% end %>
-	  <%= submit_tag "Your guess", :class => 'btn btn-default' %>
 	<% end %>
   </thead>
 </table>
@@ -24,7 +23,7 @@
   <%= link_to t('Previous question', :default => t("helpers.links.previous")),
               {:action => 'show', :id => @survey.previous, :survey_id => @survey.id}, :class => 'btn btn-default' %>
   <%= link_to t('Next question', :default => t("helpers.links.next")),
-             { :action => 'show', :id => @survey.next, :survey_id => @survey.id}, :class => 'btn btn-default' %>
+             quiz_guess_questions_path(:action => 'show', :id => @survey.next, :survey_id => @survey.id), :method => :put, :class => 'btn btn-default' %>
 
   
   
