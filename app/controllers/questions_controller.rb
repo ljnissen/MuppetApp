@@ -82,11 +82,12 @@ class QuestionsController < ApplicationController
   end
 
   def quiz_guess
-    Answer.update_all({"guess" => true})
+    @answer = Answer.find(params[:id])
+    if @answer.update({:guess => true, :check_id => @answer.id})
       redirect_to(:action => 'show', :survey_id => @survey.id)
+    end
   end
 
-  private
     # Use callbacks to share common setup or constraints between actions.
     def set_question
       @question = Question.find(params[:id])
@@ -94,7 +95,7 @@ class QuestionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
-      params.require(:question).permit(questions_attributes: [:survey_id, :id, :content, answers_attributes: [:id, :question_id, :correct_answer, :content, :guess], correct_answers_attributes: [:guess, :question_id]])
+      params.require(:question).permit( questions_attributes: [:survey_id, :id, :content, answers_attributes: [:id, :question_id, :correct_answer, :content, :guess], correct_answers_attributes: [:guess, :question_id]])
     end
 
     def find_survey
