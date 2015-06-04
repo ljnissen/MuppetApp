@@ -83,8 +83,11 @@ class QuestionsController < ApplicationController
 
   def quiz_guess
     @answer = Answer.find(params[:id])
-    if @answer.update({:guess => true, :check_id => @answer.id})
+    if check_box(@answer.guess == true)
+      Answer.update(params[:id], :guess => true)
       redirect_to(:action => 'show', :survey_id => @survey.id)
+    else
+      puts "Guess not saved"
     end
   end
 
