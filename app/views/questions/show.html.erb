@@ -10,12 +10,16 @@
 			<li><%= h question.content %></li>
 				<% for answer in question.answers do %>
 					<li><%= h answer.content %>
-					<%= check_box(answer, :guess, {}, false, true) %></li>
+              <%= form_for :guess do |f| %>
+					       <%= f.check_box(:guess, :method => :put) %>
+              <% end %>
+          </li>
 				<% end %>
 		<% end %>
 	<% end %>
   </thead>
 </table>
+# 
 
 
   <%= link_to t('.back', :default => t("helpers.links.back")),

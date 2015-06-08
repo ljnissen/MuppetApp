@@ -83,12 +83,10 @@ class QuestionsController < ApplicationController
 
   def quiz_guess
     @answer = Answer.find(params[:id])
-    if check_box(@answer.guess == true)
-      Answer.update(params[:id], :guess => true)
-      redirect_to(:action => 'show', :survey_id => @survey.id)
-    else
-      puts "Guess not saved"
-    end
+    # if check_box({:guess => true, :id => @answer.id}, :method => :get)
+    Answer.update(params[:id], :guess => true) 
+       puts("Guess saved")
+    redirect_to(:action => 'show', :id => @survey.next, :survey_id => @survey.id)
   end
 
     # Use callbacks to share common setup or constraints between actions.
