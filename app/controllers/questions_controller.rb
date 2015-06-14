@@ -11,6 +11,8 @@ class QuestionsController < ApplicationController
   end
 
   def show
+    @answer = Answer.find(params[:id])
+    @answers = Answer.where(:survey_id => @survey.id)
     @question = Survey.find(params[:id])
     @questions = Question.where(:survey_id => @survey.id)
     @surveys = Survey.all
@@ -77,6 +79,18 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id]).destroy
     flash[:notice] = "Question destroyed successfully."
     redirect_to(:action => 'index', :survey_id => @survey.id)
+  end
+
+  def edit_multiple
+    @answers = Answer.find(params[:guess_id])
+  end
+
+  def quiz_guess
+    Answer.update(params[:answers].keys, params[:answers].values)
+    flash[:notice] = "Guess saved successfully."
+    redirect_to questions_url
+    # :id => @survey.next,
+    # :action => 'show', :survey_id => @survey.id
   end
 
   private

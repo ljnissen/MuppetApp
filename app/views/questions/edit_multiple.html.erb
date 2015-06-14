@@ -1,0 +1,17 @@
+<h1>Edit Checked Questions</h1>
+
+<%= form_tag update_multiple_questions_path, method: :put do %>
+	<% @answers.each do |answer| %>
+	  <h2><%= answer.content %></h2>
+
+		<%= fields_for "answers[]", answer do |f| %>
+			<div class="field">
+				<%= f.check_box :guess %>
+				<%= f.label :guess %>
+			</div>
+			<div class="actions">
+				<%= submit_tag "Update" %>
+			</div>
+		<% end %>
+	<% end %>
+<% end %>
