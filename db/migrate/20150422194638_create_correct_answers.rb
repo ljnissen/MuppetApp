@@ -2,7 +2,7 @@ class CreateCorrectAnswers < ActiveRecord::Migration
   def up
     create_table :correct_answers do |t|
     	t.integer :question_id
-    	t.boolean :guess
+    	t.boolean :guess, :default => false
       	t.timestamps null: false
     end
   end

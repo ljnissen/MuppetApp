@@ -12,7 +12,7 @@
               <li>
                 <%= fields_for "answers[]", answer do |f| %>
                   <%= answer.content %>  
-                  <%= f.check_box :guess %>    
+                  <%= f.check_box :guess, :checked => false %>    
                 <% end %>
               </li>
   				<% end %>
