@@ -1,0 +1,56 @@
+                   Prefix Verb                  URI Pattern
+tion
+                     root GET                   /
+
+                  surveys GET                   /surveys(.:format)
+
+                          POST                  /surveys(.:format)
+e
+               new_survey GET                   /surveys/new(.:format)
+              edit_survey GET                   /surveys/:id/edit(.:forma
+                   survey GET                   /surveys/:id(.:format)
+                          PATCH                 /surveys/:id(.:format)
+e
+                          PUT                   /surveys/:id(.:format)
+e
+                          DELETE                /surveys/:id(.:format)
+oy
+           questions_show GET                   /questions/show(.:format)
+ex
+     quiz_guess_questions PUT                   /questions/quiz_guess(.:f
+z_guess
+  edit_multiple_questions GET                   /questions/edit_multiple(
+t_multiple
+update_multiple_questions PUT                   /questions/update_multipl
+ate_multiple
+                questions GET                   /questions(.:format)
+ex
+                          POST                  /questions(.:format)
+ate
+             new_question GET                   /questions/new(.:format)
+
+            edit_question GET                   /questions/:id/edit(.:for
+t
+                 question GET                   /questions/:id(.:format)
+w
+                          PATCH                 /questions/:id(.:format)
+ate
+                          PUT                   /questions/:id(.:format)
+ate
+                          DELETE                /questions/:id(.:format)
+troy
+                  answers GET                   /answers(.:format)
+
+                          POST                  /answers(.:format)
+e
+               new_answer GET                   /answers/new(.:format)
+              edit_answer GET                   /answers/:id/edit(.:forma
+                   answer GET                   /answers/:id(.:format)
+                          PATCH                 /answers/:id(.:format)
+e
+                          PUT                   /answers/:id(.:format)
+e
+                          DELETE                /answers/:id(.:format)
+oy
+                          GET|POST|PATCH|DELETE /:controller(/:action(/:i
+action

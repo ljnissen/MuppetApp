@@ -9,6 +9,4 @@ class Question < ActiveRecord::Base
 	def points
 		self.answers.count
 	end
-
-
 end

@@ -11,7 +11,7 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @answer = Answer.find(params[:id])
+    @answer = Survey.find(params[:id]) #answer
     @answers = Answer.where(:survey_id => @survey.id)
     @question = Survey.find(params[:id])
     @questions = Question.where(:survey_id => @survey.id)
@@ -86,11 +86,10 @@ class QuestionsController < ApplicationController
   end
 
   def quiz_guess
+    @survey = Survey.first
     Answer.update(params[:answers].keys, params[:answers].values)
     flash[:notice] = "Guess saved successfully."
-    redirect_to questions_url
-    # :id => @survey.next,
-    # :action => 'show', :survey_id => @survey.id
+    redirect_to(:action => 'show', :id => @survey.next, :survey_id => @survey.id)
   end
 
   private
